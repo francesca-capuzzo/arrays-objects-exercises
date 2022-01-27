@@ -40,7 +40,8 @@ console.log(listToArray(arrayToList([1, 2, 3])));
 //**********************************************************/
 //DEEP COMPARISON:
 
-let obj = {here: {is: "an"}, object: 2};
+let obj = {here: 4, object: 2};
+let obj2 = {here: 4, object: 2};
 
 function deepEqual(a, b) {
     if (a === b) return true;
@@ -49,18 +50,23 @@ function deepEqual(a, b) {
     let keyA = Object.keys(a) 
     let keyB = Object.keys(b)
 
-    if (keyA.length !== keyB.lengh) {
+    if (keyA.length !== keyB.length) {
         return false;
     }
-    for (const key of keyA) {
-        if (!keyB.includes(key) || (!deepEqual(a[key], b[key]))) {
-            return false;
-        }
+    // for (const key of keyA) {
+    //     if (!keyB.includes(key) || (!deepEqual(a[key], b[key]))) {
+    //         return false;
+    //     }
+    // }
+    if (keyA !== keyB) {
+        return false;
     }
     return true;
 }
 
 console.log(deepEqual(obj, obj));
+
+console.log(deepEqual(obj, obj2));
 
 console.log(deepEqual(obj, {here: 1, object: 2}));
 
