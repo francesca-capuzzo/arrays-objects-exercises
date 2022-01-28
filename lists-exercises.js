@@ -44,23 +44,25 @@ let obj = {here: 4, object: 2};
 let obj2 = {here: 4, object: 2};
 
 function deepEqual(a, b) {
-    if (a === b) return true;
+    if (a === b) return true;                                                                    
     if (a == null || b == null || typeof a !== "object" || typeof b !== "object") return false;
 
-    let keyA = Object.keys(a) 
+    //if (a === null || b === null|| typeof a !== typeof b) return false;
+    let keyA = Object.keys(a)                                           //define keys
     let keyB = Object.keys(b)
 
-    if (keyA.length !== keyB.length) {
+    if (keyA.length !== keyB.length) {                                  //check length
         return false;
     }
-    // for (const key of keyA) {
-    //     if (!keyB.includes(key) || (!deepEqual(a[key], b[key]))) {
-    //         return false;
-    //     }
+    for (const key of keyA) {
+        //define all keys of keyA (which already take keys)
+        if (!keyB.includes(key) || (!deepEqual(a[key], b[key]))) {
+            return false;
+        }
+    }
+    // if (keyA !== keyB) {
+    //     return false;
     // }
-    if (keyA !== keyB) {
-        return false;
-    }
     return true;
 }
 
